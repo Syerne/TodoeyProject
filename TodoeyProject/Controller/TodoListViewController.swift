@@ -19,6 +19,8 @@ class TodoListViewController: UITableViewController {
         
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist"))
         
+        //searchBar.delegate = self // done by storyboard
+        
        loadItems()
         
     }
@@ -40,17 +42,7 @@ class TodoListViewController: UITableViewController {
 //MARK: - Tableview Delegate Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //UPDATE DATA
-        //update if you click on that checkmark added and text will be change to completed
-        //after Changes call context.save
-            //itemArray[indexPath.row].setValue("Completed", forKey: "title")
-        
-        // Delete data
-        // seqence of below two line is matter
-            //context.delete(itemArray[indexPath.row])
-            //itemArray.remove(at: indexPath.row)
 
-        
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         saveItems()
         tableView.deselectRow(at: indexPath, animated: true)
@@ -98,6 +90,27 @@ class TodoListViewController: UITableViewController {
         } catch {
             print("Error fetching data from context \(error)")
         }
+    }
+    
+}
+
+//MARK: - Search Bar Methods
+extension TodoListViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        //print(searchBar.text!)
+        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        request.predicate = predicate
+        
+        let sortDescripter = NSSortDescriptor(key: "title", ascending: true)
+        request.sortDescriptors = [sortDescripter]
+        
+        do {
+            itemArray = try context.fetch(request)
+        } catch {
+            print("Error fetching data from context \(error)")
+        }
+        tableView.reloadData()
     }
 }
 
