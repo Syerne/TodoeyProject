@@ -10,28 +10,13 @@ import UIKit
 class TodoListViewController: UITableViewController {
     
     var itemArray = [Item]()
-    // user defaults take only standard data type not custom data type able to save that in plist that why we used encoder
-        //let defaults = UserDefaults.standard
+    
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
  
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let newItem = Item()
-        newItem.title = "Find Bike"
-        itemArray.append(newItem)
-    
-        let newItem2 = Item()
-        newItem2.title = "Find Rider"
-        itemArray.append(newItem2)
-        
-        let newItem3 = Item()
-        newItem3.title = "Start Journey"
-        itemArray.append(newItem3)
-        
-//        if let items = defaults.array(forKey: "TodoListArray") as? [Item] {
-//            itemArray = items
-//        }
+
+        loadItems()
         
     }
     
@@ -45,7 +30,6 @@ class TodoListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TodoItemCell", for: indexPath)
         let item = itemArray[indexPath.row]
         cell.textLabel?.text = item.title
-        //ternary operator
         cell.accessoryType = item.done ? .checkmark : .none
         return cell
     }
@@ -90,6 +74,17 @@ class TodoListViewController: UITableViewController {
             print("Error encoding item array, \(error)")
         }
         self.tableView.reloadData()
+    }
+    
+    func loadItems() {
+        if let data = try? Data(contentsOf: dataFilePath!) {
+            let decoder = PropertyListDecoder()
+            do {
+            itemArray = try decoder.decode([Item].self, from: data)
+            } catch {
+                print("Error decoding item array, \(error)")
+            }
+        }
     }
 }
 
