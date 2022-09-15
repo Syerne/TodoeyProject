@@ -14,6 +14,7 @@
 		3C85501E28C8ED72009B389B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C85501D28C8ED72009B389B /* Assets.xcassets */; };
 		3C85502128C8ED72009B389B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C85501F28C8ED72009B389B /* LaunchScreen.storyboard */; };
 		3C867B3D28CE1B4E0031BF60 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C867B3B28CE1B4E0031BF60 /* DataModel.xcdatamodeld */; };
+		3C8F811E28D331980072E07A /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F811D28D331980072E07A /* CategoryTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		3C85502028C8ED72009B389B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C85502228C8ED72009B389B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C867B3C28CE1B4E0031BF60 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		3C8F811D28D331980072E07A /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		3C37631028CB28FC00F318A2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3C8F811D28D331980072E07A /* CategoryTableViewController.swift */,
 				3C85501828C8ED70009B389B /* TodoListViewController.swift */,
 			);
 			path = Controller;
@@ -175,6 +178,7 @@
 			files = (
 				3C867B3D28CE1B4E0031BF60 /* DataModel.xcdatamodeld in Sources */,
 				3C85501928C8ED70009B389B /* TodoListViewController.swift in Sources */,
+				3C8F811E28D331980072E07A /* CategoryTableViewController.swift in Sources */,
 				3C85501528C8ED70009B389B /* AppDelegate.swift in Sources */,
 				3C85501728C8ED70009B389B /* SceneDelegate.swift in Sources */,
 			);
